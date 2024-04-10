@@ -40,6 +40,13 @@ if [ -z "$INPUT_USE_RSYNC" ]; then
   for value in $INPUT_SOURCE_FILES; do
     cp -R "$value" "$DEST_COPY"
   done
+  if [ "$INPUT_DESTINATION_FOLDER_NAME" == "empty_value" ]; then
+    echo "destinationFolderName not name specified. Copying files directly to destinationFolder."
+    true
+  else 
+    echo "destinationFolderName specified. Moving files to destinationFolderName."
+    mv "$CLONE_DIR"/"$INPUT_DESTINATION_FOLDER"/"$INPUT_DESTINATION_FOLDER_NAME"/* "$CLONE_DIR"/"$INPUT_DESTINATION_FOLDER"  
+  fi
 else
   echo "rsync mode detected"
   for value in $INPUT_SOURCE_FILES; do
