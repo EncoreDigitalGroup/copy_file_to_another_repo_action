@@ -1,6 +1,8 @@
 # Changes from original action
 This github action differs from the [original action](https://github.com/dmnemec/copy_file_to_another_repo_action) in the last step. When pushing the commit it is done with `--force`. This was to fix an error I was having when running the action when the destination branch existed and had changes.
 
+This action does `rm -rf` the target directory and sync in all changes from the source files.
+
 The error I encountered
 ```
 error: failed to push some refs to REPO
@@ -57,4 +59,5 @@ The `API_TOKEN_GITHUB` needs to be set in the `Secrets` section of your reposito
 * use_rsync: [optional] Uses `rsync -avh` instead of `cp -R` to perform the base operation. Currently works as an experimental feature (due to lack of testing) but can speed up updates to large collections of files with many small changes by only syncing the changes and not copying the entire contents again. Please understand your use case before using this, and provide feedback as issues if needed.
 
 # Behavior Notes
-The action will create any destination paths if they don't exist. It will also overwrite existing files if they already exist in the locations being copied to. It will not delete the entire destination repository.
+
+This action does `rm -rf` the target directory and sync in all changes from the source files. Any changes made in the target will be overridden.
