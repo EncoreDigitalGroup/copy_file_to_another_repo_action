@@ -8,6 +8,11 @@ if [ -z "$INPUT_SOURCE_FILES" ]; then
   return 1
 fi
 
+if [ -z "$INPUT_DESTINATION_REPO" ]; then
+  echo "Destination repo must be defined"
+  return 1
+fi
+
 if [ -z "$INPUT_GIT_SERVER" ]; then
   INPUT_GIT_SERVER="github.com"
 fi
